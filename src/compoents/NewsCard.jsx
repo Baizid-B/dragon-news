@@ -1,6 +1,7 @@
 import { LuBookmark } from "react-icons/lu";
 import { FaRegEye } from "react-icons/fa";
 import { BsShareFill, BsStarFill, BsStarHalf } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const NewsCard = ({ news }) => {
   const {others_info,rating,total_view,title,author,thumbnail_url,details,} = news || {};
@@ -48,7 +49,10 @@ const NewsCard = ({ news }) => {
         <h2 className="text-lg font-bold mb-2">{title}</h2>
 
         {/* Details */}
-        <p className="text-sm text-gray-600 line-clamp-3 mb-4">{details}</p>
+        <p className="text-sm text-gray-600 line-clamp-3 mb-4">
+            {details.slice(1, 150)}...{" "}
+            <Link to={`/news/${news._id}`} className="text-primary font-semibold">Read More</Link>
+        </p>
 
         {/* Footer */}
         <div className="flex justify-between items-center">
@@ -65,7 +69,7 @@ const NewsCard = ({ news }) => {
           </div>
           <div className="flex items-center text-gray-500">
             <FaRegEye className="mr-2" />
-            <span>{total_view}</span>
+            <Link>{total_view}</Link>
           </div>
         </div>
       </div>
